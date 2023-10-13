@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\CreateActivity;
+use App\Livewire\UpdateActivity;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/create-activity', CreateActivity::class)->name('create');
+    Route::get('/update-activity/{activity}', UpdateActivity::class)->name('update');
+});
+
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
