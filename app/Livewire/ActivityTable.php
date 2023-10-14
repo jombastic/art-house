@@ -10,6 +10,11 @@ class ActivityTable extends Component
 {
     use WithPagination;
 
+    public function deleteActivity($id)
+    {
+        Activity::find($id)->delete();
+    }
+
     public function render()
     {
         return view('livewire.activity-table', [

@@ -24,6 +24,8 @@ class UpdateActivity extends Component
 
     public function render()
     {
-        return view('livewire.create-activity');
+        return view('livewire.create-activity', [
+            'header' => 'Update'
+        ]);
     }
 }
