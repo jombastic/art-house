@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('time_spent');
             $table->text('description');
+            $table->dateTime('date_time');
             $table->timestamps();
         });
     }

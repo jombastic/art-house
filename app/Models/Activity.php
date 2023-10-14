@@ -13,5 +13,6 @@ class Activity extends Model
         'title',
         'description',
         'time_spent',
+        'date_time',
     ];
 }

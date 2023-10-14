@@ -19,6 +19,9 @@ class ActivityForm extends Form
     #[Rule('required|numeric|min:1', as: 'time spent')]
     public $time_spent = '';
 
+    #[Rule('required|date_format:Y-m-d\TH:i', as: 'date and time')]
+    public $date_time = '';
+
     public function setPost(Activity $activity)
     {
         $this->activity = $activity;
@@ -28,6 +31,8 @@ class ActivityForm extends Form
         $this->description = $activity->description;
 
         $this->time_spent = $activity->time_spent;
+
+        $this->date_time = $activity->date_time;
     }
 
     public function store()
