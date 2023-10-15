@@ -70,12 +70,12 @@ new #[Layout('layouts.guest')] class extends Component {
 
     <form wire:submit="login">
         <!-- Email Address -->
-        <x-text-input wire:model.live.debounce.150ms="email" id="email" error="email" label="Email"
+        <x-text-input wire:model.live.debounce.150ms="email" id="email" error="email" label="email"
             class="block mt-1 w-full" type="email" name="email" autofocus autocomplete="username" />
 
         <!-- Password -->
 
-        <x-text-input wire:model.live.debounce.150ms="password" id="password" error="password" label="Password" divClass="mt-4" class="block mt-1 w-full" type="password"
+        <x-text-input wire:model.live.debounce.150ms="password" id="password" error="password" label="password" divClass="mt-4" class="block mt-1 w-full" type="password"
             name="password" autocomplete="current-password" />
 
         <!-- Remember Me -->

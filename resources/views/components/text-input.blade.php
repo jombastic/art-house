@@ -6,7 +6,7 @@
 ])
 
 <div class="{{ $divClass }}">
-    <x-input-label for="{{ $label }}" :value="ucfirst(__($label))" />
+    <x-input-label for="{{ $label }}" :value="ucfirst(str_replace('_', ' ', __($label)))" />
 
     @if ($attributes->get('type') === 'textarea')
         <textarea {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([

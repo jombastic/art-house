@@ -2,15 +2,18 @@
     @vite(['resources/css/activity-table.css'])
 
     <h2 class="text-lg font-medium text-gray-900 mb-2">Filter dates</h2>
-    <div class="flex flex-col flex-wrap sm:flex-row mb-4">
+    <form wire:submit="refresh" class="flex flex-col flex-wrap sm:flex-row mb-4">
         <x-text-input wire:model.live.debounce.150ms="form.date_from" id="date_from" name="date_from" divClass="sm:mr-4 sm:mb-0 mb-2"
-            class="block mt-1 w-full sm:w-auto" label="From" error="form.date_from" type="datetime-local" />
+            class="block mt-1 w-full sm:w-auto" label="date_from" error="form.date_from" type="datetime-local" />
         <x-text-input wire:model.live.debounce.150ms="form.date_to" id="date_to" name="date_to" divClass="sm:mb-0 mb-2 sm:mr-4"
-            class="block mt-1 w-full sm:w-auto" label="To" error="form.date_to" type="datetime-local" />
-        <x-primary-button href="#" class="sm:self-end self-start">
+            class="block mt-1 w-full sm:w-auto" label="date_from" error="form.date_to" type="datetime-local" />
+        <x-primary-button class="sm:self-end self-start">
             {{ __('Filter') }}
         </x-primary-button>
-    </div>
+        <x-secondary-button wire:click="resetForm" class="sm:self-end self-start ml-4">
+            {{ __('Reset') }}
+        </x-secondary-button>
+    </form>
 
     <table class="min-w-full divide-y divide-gray-200 table-fixed w-full p-0 m-0">
         <thead class="bg-gray-50">
