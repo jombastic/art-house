@@ -9,17 +9,17 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
                 <form wire:submit="save" class="space-y-4">
-                    <x-text-input wire:model.live.debounce.150ms="form.title" id="title" class="block mt-1 w-full"
-                        label="title" error="form.title" type="text" />
+                    <x-text-input wire:model.live.debounce.150ms="form.title" id="title" name="title" class="block mt-1 w-full"
+                        label="Title" error="form.title" type="text" />
 
-                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.description" id="description"
-                        class="block mt-1 w-full" type="textarea" error="form.description" label="description" />
+                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.description" id="description" name="description"
+                        class="block mt-1 w-full" type="textarea" error="form.description" label="Description" />
 
-                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.time_spent" id="time_spent"
-                        class="block mt-1 w-full" type="number" step=".01" error="form.time_spent" label="time_spent" />
+                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.time_spent" id="time_spent" name="time_spent"
+                        class="block mt-1 w-full" type="number" step=".01" error="form.time_spent" label="Time spent" />
 
-                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.date_time" id="date_time"
-                        class="block mt-1 w-full" type="datetime-local" step=".01" error="form.date_time" label="date_time" />
+                    <x-text-input divClass="mt-4" wire:model.live.debounce.150ms="form.date_time" id="date_time" name="date_time"
+                        class="block mt-1 w-full" type="datetime-local" step=".01" error="form.date_time" label="Date and time" />
 
                     <x-primary-button>
                         {{ __('Save') }}
