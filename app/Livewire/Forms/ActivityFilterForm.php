@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Activity;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 

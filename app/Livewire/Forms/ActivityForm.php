@@ -39,7 +39,7 @@ class ActivityForm extends Form
     {
         $this->validate();
 
-        Activity::create($this->all());
+        Activity::create(array_merge($this->all(), ['user_id' => auth()->id()]));
     }
 
     public function update()

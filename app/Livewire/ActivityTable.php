@@ -4,10 +4,9 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\ActivityFilterForm;
 use App\Models\Activity;
-// use App\Services\ActivityService;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Url;
 
 class ActivityTable extends Component
 {
@@ -15,7 +14,9 @@ class ActivityTable extends Component
 
     public ActivityFilterForm $form;
 
+    #[Url]
     public $date_from = '';
+    #[Url]
     public $date_to = '';
 
     public function deleteActivity($id)
