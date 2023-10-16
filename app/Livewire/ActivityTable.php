@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\ActivityFilterForm;
 use App\Models\Activity;
+use App\Repositories\ActivityRepository;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
@@ -19,14 +20,30 @@ class ActivityTable extends Component
     #[Url]
     public $date_to = '';
 
+    public $token;
+    public $routeName;
+
+    protected $activityRepository;
+
+    public function mount(ActivityRepository $activityRepository, ?string $token = null, ?string $routeName = null)
+    {
+        $this->activityRepository = $activityRepository;
+
+        $this->token = $token;
+
+        $this->routeName = $routeName;
+
+        $this->form->setPost($this->date_from, $this->date_to);
+    }
+
+    public function hydrate(ActivityRepository $activityRepository)
+    {
+        $this->activityRepository = $activityRepository;
+    }
+
     public function deleteActivity($id)
     {
         Activity::find($id)->delete();
-    }
-
-    public function mount()
-    {
-        $this->form->setPost($this->date_from, $this->date_to);
     }
 
     public function refresh()
@@ -50,16 +67,15 @@ class ActivityTable extends Component
 
     public function render()
     {
-        $query = Activity::query();
-
-        if ($this->date_from && $this->date_to) {
-            $query->whereBetween('date_time', [
-                $this->date_from,
-                $this->date_to,
-            ]);
+        if ($this->routeName == 'report.show') {
+            $activities = $this->activityRepository->getAllActivitiesByUserId($this->token);
+        } else {
+            if ($this->date_from && $this->date_to) {
+                $activities = $this->activityRepository->getActivitiesByDateRange($this->date_from, $this->date_to);
+            } else {
+                $activities = $this->activityRepository->getActivitiesByUserId()->paginate(2);
+            }
         }
-
-        $activities = $query->paginate(2);
 
         return view('livewire.activity-table', [
             'activities' => $activities
