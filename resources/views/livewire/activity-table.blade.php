@@ -25,7 +25,7 @@
     @endunless
 
     @php
-        $fields = ['Activity Title' => 'title', 'Description' => 'description', 'Time Spent' => 'time_spent', 'Date' => 'date_time'];
+        $fields = ['Activity Title' => 'title', 'Description' => 'description', 'Time Spent (hours)' => 'time_spent', 'Date' => 'date_time'];
         if (!Route::currentRouteNamed('report.show')) {
             $fields['Actions'] = 'actions';
         }
@@ -85,4 +85,10 @@
             {{ $activities->links() }}
         </div>
     @endunless
+
+    @if (Route::currentRouteNamed('report.show'))
+        <div class="mt-4">
+            <p class="text-right font-bold">Total time spent: {{ $activities->sum('time_spent') }} hours</p>
+        </div>
+    @endif
 </div>

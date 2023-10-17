@@ -16,20 +16,6 @@ class DashboardController extends Controller
         return view('dashboard');
     }
 
-    public function sendReport(User $user)
-    {
-        $token = Str::random(60);
-
-        // Save the token in the database associated with the user's report
-        $user->report_token = $token;
-        $user->save();
-
-        $url = route('report.show', ['token' => $token]);
-
-        // Send the email with the URL
-        Mail::to($user->email)->send(new ReportMail($url));
-    }
-
     public function showReport(?string $token = '')
     {
         if (auth()->guest()) {
@@ -41,6 +27,8 @@ class DashboardController extends Controller
             }
         }
 
-        return view('dashboard');
+        return view('dashboard', [
+            'header' => "Print report for user " . ($user->name ?? auth()->user()->name)
+        ]);
     }
 }

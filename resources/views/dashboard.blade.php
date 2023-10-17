@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2
             class="font-semibold text-xl text-gray-800 leading-tight {{ Route::currentRouteNamed('report.show') ? 'print:text-black' : '' }}">
-            {{ __('Dashboard') }}
+            {{ $header ?? __('Dashboard') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
                         <x-primary-button href="{{ route('report.show') }}" class="bg-yellow-500 hover:bg-yellow-600 mr-4 my-2">
                             {{ __('Show print report') }}
                         </x-primary-button>
-                        <x-primary-button href="#" class="bg-green-500 hover:bg-green-600 my-2">
+                        <x-primary-button type="button" onclick="Livewire.dispatch('openModal', { component: 'send-email' })" class="bg-green-500 hover:bg-green-600 my-2">
                             {{ __('Send to email') }}
                         </x-primary-button>
                     </div>

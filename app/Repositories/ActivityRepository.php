@@ -24,8 +24,8 @@ class ActivityRepository
             ->paginate(2);
     }
 
-    public function getAllActivitiesByUserId()
+    public function getAllActivitiesByUserId($token = null)
     {
-        return $this->getActivitiesByUserId()->lazy();
+        return $this->getActivitiesByUserId($token)->lazy();
     }
 }
