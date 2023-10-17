@@ -12,6 +12,8 @@ class SendEmail extends ModalComponent
     public function sendEmail()
     {
         $this->form->sendMail();
+
+        $this->closeModal();
     }
 
     public function render()

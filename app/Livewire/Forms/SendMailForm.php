@@ -7,6 +7,7 @@ use Livewire\Form;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReportMail;
+use App\Models\Token;
 
 class SendMailForm extends Form
 {
@@ -19,10 +20,11 @@ class SendMailForm extends Form
 
         $token = Str::random(60);
 
-        $user = auth()->user();
-        // Save the token in the database associated with the user's report
-        $user->report_token = $token;
-        $user->save();
+        $userId = auth()->id();
+        Token::insert([
+            'user_id' => $userId,
+            'report_token' => $token,
+        ]);
 
         $url = route('report.show', ['token' => $token]);
 
