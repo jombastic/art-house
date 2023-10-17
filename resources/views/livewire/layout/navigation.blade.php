@@ -67,7 +67,6 @@ new class extends Component {
                             </button>
                         </x-slot>
 
-                        <x-slot name="content">
                             <x-dropdown-link :href="route('profile')" wire:navigate>
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -78,7 +77,6 @@ new class extends Component {
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </button>
-                        </x-slot>
                     </x-dropdown>
                 </div>
             @endauth

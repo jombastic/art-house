@@ -8,9 +8,11 @@ use App\Repositories\ActivityRepository;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use WireUi\Traits\Actions;
 
 class ActivityTable extends Component
 {
+    use Actions;
     use WithPagination;
 
     public ActivityFilterForm $form;
@@ -43,7 +45,14 @@ class ActivityTable extends Component
 
     public function deleteActivity($id)
     {
-        Activity::find($id)->delete();
+        $activity = Activity::find($id);
+        $activityTitle = $activity->title;
+        $activity->delete();
+
+        $this->notification()->success(
+            $title = 'Activity deleted',
+            $description = "The acivity <strong>$activityTitle</strong> was deleted!"
+        );
     }
 
     public function refresh()

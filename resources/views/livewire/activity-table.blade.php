@@ -43,14 +43,14 @@
             </tr>
         </thead>
         @php
-            if (!Route::currentRouteNamed('report.show')) {
+            if (!Route::currentRouteNamed('report.show') && !$activities->isEmpty()) {
                 array_pop($fields);
             }
         @endphp
         <tbody class="bg-white divide-y divide-gray-200">
             @if ($activities->isEmpty())
                 <tr>
-                    <td colspan="5"
+                    <td colspan="{{ count($fields) }}"
                         class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-500">
                         No activities for the time period
                     </td>
