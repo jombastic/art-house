@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Application Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This application is a web-based activity tracker that allows users to manage and track their activities. It provides features such as filtering activities by date, viewing and editing activity details, and deleting activities. The application also generates reports that display the total time spent on activities.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+It is built with the Laravel framework and uses Livewire to create a seamless single-page application-like experience.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Copy the .env.example file to .env:
+   ```
+   cp .env.example .env
+   ```
+   Set up the database connection and email host in the .env file:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_username
+   DB_PASSWORD=your_database_password
+   MAIL_MAILER=smtp
+   MAIL_HOST=your_mail_host
+   MAIL_PORT=your_mail_port
+   MAIL_USERNAME=null
+   MAIL_PASSWORD=null
+   MAIL_ENCRYPTION=null
+   MAIL_FROM_ADDRESS=null
+   MAIL_FROM_NAME="${APP_NAME}"
+   ```
 
-## Learning Laravel
+2. Install dependencies using composer:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+   ```
+   composer install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. Generate a new application key:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   ```
+   php artisan key:generate
+   ```
 
-## Laravel Sponsors
+4. Run migrations and seed the database:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+   ```
+   php artisan migrate --seed
+   ```
 
-### Premium Partners
+5. Set up a virtual host that points to the public folder of the application.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Features
 
-## Contributing
+1. Creating new activites: Users can input activity details in a form.
+1. Sending to email: Users can send a uniquely generated url to a specific email address that enables the receiver to view the activities of the sender.
+2. Activity Filtering: Users can filter activities based on date range using the "Filter dates" form.
+3. Activity Listing: The application displays a table that lists activities with columns for activity title, description, time spent, and date.
+4. Activity Actions: Users can perform actions on activities such as editing and deleting. The "Actions" column provides links to edit and delete individual activities.
+5. Pagination: When there are multiple activities, the application paginates the activity list for better navigation.
+6. Total Time Calculation: In the report view, the application calculates and displays the total time spent on activities.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Usage
 
-## Code of Conduct
+1. Filtering Activities:
+   - Enter the desired date range in the "Filter dates" form.
+   - Click the "Filter" button to apply the filter.
+   - The activity table will update to display only the activities within the specified date range.
+   - To reset the filter, click the "Reset" button.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Editing an Activity:
+   - In the activity table, locate the activity you want to edit.
+   - Click the "Edit" link in the "Actions" column.
+   - You will be redirected to the edit page for that activity, where you can make changes and save them.
 
-## Security Vulnerabilities
+3. Deleting an Activity:
+   - In the activity table, locate the activity you want to delete.
+   - Click the "Delete" link in the "Actions" column.
+   - A confirmation prompt will appear.
+   - Click "OK" to delete the activity permanently.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Generating Reports:
+   - Navigate to the report view by clicking on the "Report" link in the application.
+   - The report view displays the total time spent on activities.
+   - This can be useful for tracking overall productivity or analyzing time allocation.
 
-## License
+5. Buttons:
+   - Create Activity: This button allows users to create a new activity. It is linked to the create route.
+   - Show Print Report: This button allows users to view a print friendly report. It is linked to the report.show route.
+   - Send to Email: This button triggers a modal to send the activity details to an email address.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Pagination:
+   - A pagination is set on the dashboard and it shows maximum 2 activities in the table just for demonstration.
