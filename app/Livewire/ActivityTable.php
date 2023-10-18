@@ -35,6 +35,8 @@ class ActivityTable extends Component
 
         $this->routeName = $routeName;
 
+        $this->dispatch('activities-filtered', date_from: $this->date_from, date_to: $this->date_to)->to(Dashboard::class);
+
         $this->form->setPost($this->date_from, $this->date_to);
     }
 
@@ -62,6 +64,8 @@ class ActivityTable extends Component
         $this->date_from = $this->form->date_from;
         $this->date_to = $this->form->date_to;
 
+        $this->dispatch('activities-filtered', date_from: $this->date_from, date_to: $this->date_to)->to(Dashboard::class);
+
         $this->resetPage();
     }
 
@@ -71,19 +75,18 @@ class ActivityTable extends Component
         $this->date_to = '';
 
         $this->form->reset();
+
+        $this->dispatch('activities-filtered', date_from: $this->date_from, date_to: $this->date_to)->to(Dashboard::class);
+
         $this->resetPage();
     }
 
     public function render()
     {
         if ($this->routeName == 'report.show') {
-            $activities = $this->activityRepository->getAllActivitiesByUserId($this->token);
+            $activities = $this->activityRepository->getActivitiesByDateRange($this->date_from, $this->date_to, $this->token)->lazy();
         } else {
-            if ($this->date_from && $this->date_to) {
-                $activities = $this->activityRepository->getActivitiesByDateRange($this->date_from, $this->date_to);
-            } else {
-                $activities = $this->activityRepository->getActivitiesByUserId()->paginate(2);
-            }
+            $activities = $this->activityRepository->getActivitiesByDateRange($this->date_from, $this->date_to)->paginate(2);
         }
 
         return view('livewire.activity-table', [

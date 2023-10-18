@@ -6,11 +6,6 @@ use App\Models\Token;
 
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        return view('dashboard');
-    }
-
     public function showReport(?string $token = '')
     {
         if (auth()->guest()) {

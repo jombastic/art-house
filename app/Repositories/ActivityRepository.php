@@ -17,15 +17,12 @@ class ActivityRepository
         }
     }
 
-    public function getActivitiesByDateRange($dateFrom, $dateTo)
+    public function getActivitiesByDateRange($dateFrom = '', $dateTo = '', $token = null)
     {
-        return $this->getActivitiesByUserId()
-            ->whereBetween('date_time', [$dateFrom, $dateTo])
-            ->paginate(2);
-    }
-
-    public function getAllActivitiesByUserId($token = null)
-    {
-        return $this->getActivitiesByUserId($token)->lazy();
+        $query = $this->getActivitiesByUserId($token);
+        if ($dateFrom && $dateTo) {
+            $query = $query->whereBetween('date_time', [$dateFrom, $dateTo]);
+        }
+        return $query;
     }
 }

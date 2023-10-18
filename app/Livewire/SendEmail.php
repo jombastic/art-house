@@ -10,11 +10,14 @@ class SendEmail extends ModalComponent
 {
     use Actions;
 
+    public $date_from;
+    public $date_to;
+
     public SendMailForm $form;
 
     public function sendEmail()
     {
-        $this->form->sendMail();
+        $this->form->sendMail($this->date_from, $this->date_to);
 
         $this->closeModal();
 

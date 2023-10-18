@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Livewire\CreateActivity;
+use App\Livewire\Dashboard;
 use App\Livewire\UpdateActivity;
 use Illuminate\Support\Facades\Route;
 
@@ -21,12 +22,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('/create-activity', CreateActivity::class)->name('create');
     Route::get('/update-activity/{activity}', UpdateActivity::class)->name('update');
-
-    Route::get('/send-report', [DashboardController::class, 'sendReport'])->name('report.send');
 });
 
 Route::get('/report/{token?}', [DashboardController::class, 'showReport'])->name('report.show');

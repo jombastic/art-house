@@ -14,7 +14,7 @@ class SendMailForm extends Form
     #[Rule('required|email')]
     public $email = '';
 
-    public function sendMail()
+    public function sendMail($date_from = '', $date_to = '')
     {
         $this->validate();
 
@@ -26,7 +26,11 @@ class SendMailForm extends Form
             'report_token' => $token,
         ]);
 
-        $url = route('report.show', ['token' => $token]);
+        $url = route('report.show', [
+            'token' => $token,
+            'date_from' => $date_from,
+            'date_to' => $date_to,
+        ]);
 
         // Send the email with the URL
         Mail::to($this->only(['email']))->send(new ReportMail($url));
