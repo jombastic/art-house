@@ -1,0 +1,17 @@
+{
+  "resources/css/activity-table.css": {
+    "file": "assets/activity-table-7405d098.css",
+    "isEntry": true,
+    "src": "resources/css/activity-table.css"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-a2f4c27d.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-02317797.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
