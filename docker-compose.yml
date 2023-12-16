@@ -55,7 +55,7 @@ services:
         networks:
             - sail
         environment:
-            - PMA_ARBITRARY=1            
+            - PMA_ARBITRARY=1
 networks:
     sail:
         driver: bridge
