@@ -42,7 +42,7 @@ It is built with the Laravel framework and uses Livewire to create a seamless si
    php artisan key:generate
    ```
 
-4. Run migrations and seed the database:
+4. Run migrations and seed the database. This will also create a new user with the email "admin@example.com" and password "password" that can be used to log in:
 
    ```
    php artisan migrate --seed
